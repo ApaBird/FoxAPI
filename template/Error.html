@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ошибка</title>
+	<style>
+		body{
+			text-align: center;
+		}
+		#photo{
+			width: 500px;
+		}
+		.photo-block{
+			width: 540px;
+			border: solid black 2px;
+			border-radius: 15px;
+			padding: auto;
+			margin: auto;
+			margin-bottom: 50px;
+		}
+		form{
+			margin: 10px;
+		}
+		input{
+			width: 450px;
+			height: 50px;
+		}
+		button{
+			border: solid black 3px;
+			background: white;
+			font-size: 24px;
+			padding: 5px;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>{{ .}}</h1>
+
+	<form action="http://localhost:8080/" id="random">
+		<button>Рандомная Лиса</button>
+	</form>
+</body>
+</html>

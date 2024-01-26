@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>web-ui</title>
+	<style>
+		body{
+			text-align: center;
+		}
+		#photo{
+			width: 100%;
+		}
+		.photo-block{
+			width: 540px;
+			border: solid black 2px;
+			border-radius: 15px;
+			padding: 20px;
+			margin: auto;
+			margin-bottom: 50px;
+		}
+		form{
+			margin: 10px;
+		}
+		input{
+			width: 450px;
+			height: 50px;
+		}
+		button{
+			border: solid black 3px;
+			background: white;
+			font-size: 24px;
+			padding: 5px;
+			border-radius: 5px;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="photo-block">
+		<img src="{{ .URL}}" id="photo">
+	</div>
+	<input type="text" id="url_img" value="{{.URL}}" onchange="correctUrl(this)"><br>	
+	<span>id:</span>
+	<span id="id_img">{{.ID}}</span><br>
+
+	<form action="/fox" id="add">
+		<button onclick="addfox()">Добавить</button>
+	</form>
+
+	<form action="/fox" id="random">
+		<button>Рандомная Лиса</button>
+	</form>
+
+	<form action="/fox" id="Delete" onsubmit="delfox()">
+		<button>Удалить</button>
+	</form>
+
+	<script type="text/javascript">
+		let Url = url_img.value
+		let Id  = parseInt(id_img.innerHTML)
+
+		function correctUrl(changed) {
+			Url = changed.value;
+			console.log(Url)
+		}
+
+		function addfox(){
+			let res = fetch("http://localhost:8080/addfox", {
+			method: 'POST',
+			body: JSON.stringify({
+				id: -1,
+				url : Url
+				})
+			});
+			
+		}
+
+
+		function delfox(){
+			let res = fetch("http://localhost:8080/deletefox", {
+			method: 'DELETE',
+			body: JSON.stringify({
+				id: Id,
+				url : ""
+				})
+			})
+			console.log(res.json())
+		}
+	</script>
+</body>
+</html>
